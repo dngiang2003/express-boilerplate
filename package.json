@@ -1,0 +1,22 @@
+{
+  "name": "express-boilerplate",
+  "version": "1.0.0",
+  "description": "express boierplate",
+  "main": "./src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/dngiang2003/express-boilerplate"
+  },
+  "keywords": [
+    "template",
+    "express"
+  ],
+  "author": "github.com/dngiang2003",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
