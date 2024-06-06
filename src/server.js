@@ -2,6 +2,7 @@ const express = require('express');
 const httpStatus = require('http-status');
 
 const { env } = require('./config');
+const { errorHandler, errorConverter } = require('./middlewares');
 
 const app = express();
 
@@ -19,6 +20,9 @@ app.all('*', (req, res) => {
     statusCode: httpStatus.NOT_FOUND,
   });
 });
+
+app.use(errorConverter);
+app.use(errorHandler);
 
 app.listen(env.port, () => {
   console.log(`Server running on port ${env.port}`);
