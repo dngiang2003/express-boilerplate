@@ -1,7 +1,7 @@
 const express = require('express');
 const httpStatus = require('http-status');
 
-const { env } = require('./config');
+const { env, i18n } = require('./config');
 const { errorHandler, errorConverter } = require('./middlewares');
 
 const app = express();
@@ -10,14 +10,18 @@ if (env.nodeEnv === 'development') {
   app.use(require('morgan')('dev'));
 }
 
+app.use((req, res, next) => {
+  next(i18n.setLocale(req));
+});
+
 app.get('/', (req, res) => {
-  res.send('Server is running 🚀');
+  res.send(i18n.translate('system.serverRunning'));
 });
 
 app.all('*', (req, res) => {
   res.status(httpStatus.NOT_FOUND).send({
-    message: 'Resource not found',
     statusCode: httpStatus.NOT_FOUND,
+    message: i18n.translate('system.resourceNotFound'),
   });
 });
 
